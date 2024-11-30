@@ -1,0 +1,20 @@
+// File: src/app/components/Navbar.jsx
+"use client"
+// components/Navbar.js
+import Link from 'next/link'
+import styles from './Navbar.module.css'
+
+const Navbar = () => {
+  return (
+    <nav className={styles.navbar}>
+      <div className={styles.logo}>
+        <Link href="/">jv.</Link>
+      </div>
+      <div className={styles.menuIcon}>
+        <div className={styles.hamburger}></div>
+      </div>
+    </nav>
+  )
+}
+
+export default Navbar

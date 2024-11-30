@@ -1,0 +1,48 @@
+// File: src/app/components/Navbar.module.css
+/* Navbar.module.css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #000;
+  color: #fff;
+}
+.logo a {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+.menuIcon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.hamburger {
+  width: 24px;
+  height: 2px;
+  background-color: #fff;
+  position: relative;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background-color: #fff;
+}
+
+.hamburger::before {
+  transform: translateY(-8px);
+}
+
+.hamburger::after {
+  transform: translateY(8px);
+}
