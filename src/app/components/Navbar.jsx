@@ -13,6 +13,29 @@ const Navbar = () => {
 
   return (
     <>
+         <nav className={styles.navbarWrapper}>
+        <div className={styles.navbar}>
+          <Link href="/" className={styles.brandWrapper}>
+            <div className={styles.brandLogo}>
+              jv
+            </div>
+            <div className={`${styles.brandLogo} ${styles.brandLogoHover}`}>
+              jv
+            </div>
+            <span className={styles.textSpan}>.</span>
+          </Link>
+          <div className={styles.menuWrapper} onClick={toggleMenu}>
+            <div className={styles.menuIcon}>
+              {/* You'll need to replace this with the actual SVG or image for the menu icon */}
+              <svg width="30" height="30" viewBox="0 0 100 100">
+                <rect width="100" height="10" fill="#ffffff" />
+                <rect y="30" width="100" height="10" fill="#ffffff" />
+                <rect y="60" width="100" height="10" fill="#ffffff" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </nav>
       <nav className={styles.nav}>
         <div className={styles.navContainer}>
         
