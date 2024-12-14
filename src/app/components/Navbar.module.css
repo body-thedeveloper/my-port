@@ -1,20 +1,4 @@
-.navbarWrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  padding: 20px;
-  mix-blend-mode: exclusion;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+/* Navbar.module.css */
 .nav {
   position: fixed;
   top: 0;
@@ -26,7 +10,6 @@
   justify-content: center;
   height: 60px;
 }
-
 .navContainer {
   display: flex;
   justify-content: space-between;
@@ -95,8 +78,90 @@
 .logo:hover .letterDot {
   margin-left: 22px;
 }
+.navbarWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 20px;
+  mix-blend-mode: exclusion;
+}
 
-/* Update these styles in your Navbar.module.css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.brandWrapper {
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+}
+
+.brandLogo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  transition: transform 0.3s ease;
+}
+
+.brandLogoHover {
+  transform: translateY(100%);
+  color: #e0284c;
+}
+
+.brandWrapper:hover .brandLogo {
+  transform: translateY(-100%);
+}
+
+.brandWrapper:hover .brandLogoHover {
+  transform: translateY(0);
+}
+
+.textSpan {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: #e0284c;
+}
+
+/* ... rest of the CSS remains the same ... */
+/* ... previous navbar styles remain the same ... */
+
+.menuWrapper {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  z-index: 2000;
+}
+
+.hamburger {
+  width: 30px;
+  height: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
 .menuButton {
   width: 30px;
   height: 40px;
@@ -110,22 +175,11 @@
   z-index: 150;
 }
 
-.menuWrapper {
-  cursor: pointer;
-  width: 30px;
-  height: 40px;
-  position: relative;
-  z-index: 1000;
-}
-
 .menuIcon {
   width: 30px;
   height: 40px;
   position: relative;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .menuIcon svg {
@@ -141,16 +195,14 @@
   transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-/* Lines positioning and animations */
+/* Lines positioning */
 .topLine {
   transform: matrix(1, 0, 0, 1, 35, 35);
   transform-origin: center;
 }
 
 .topLine path {
-  transform-origin: center;
   transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
-  
 }
 
 .middleLine {
@@ -159,10 +211,11 @@
 }
 
 .middleLine path {
-  /* Middle line stays fixed */
-  width: 50%; /* Make middle line shorter */
+  width: 50%;
   transform-origin: center;
+  transition: opacity 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
+
 
 .bottomLine {
   transform: matrix(1, 0, 0, 1, 35, 35);
@@ -170,35 +223,37 @@
 }
 
 .bottomLine path {
-  transform-origin: center;
-
   transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 /* Hover animations */
-.menuButton:hover .middleLine path {
-  transform: translateY(-12px); /* Adjust this value for desired vertical spacing */
+.menuButton:hover .menuIcon:not(.menuOpen) .topLine path {
+  transform: translateY(-12px);
 }
 
-.menuButton:hover .bottomLine path {
-  transform: translateY(12px); /* Adjust this value for desired vertical spacing */
+.menuButton:hover .menuIcon:not(.menuOpen) .bottomLine path {
+  transform: translateY(12px);
 }
 
-/* When menu is open, you might want different styles */
-.menuButton.isOpen .topLine path {
-  transform: translateY(8px) rotate(45deg);
+/* When menu is open */
+.menuOpen .topLine  {
+  transform: matrix(1, 0, 0, 1, -21, 84) rotate(45deg);
+  transition: transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1); /* Increased to 0.8s */
+
+
 }
 
-.menuButton.isOpen .middleLine path {
+.menuOpen .middleLine path {
   opacity: 0;
-  transform: translateX(20px);
+  transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1); /* Increased to 0.8s */
+
 }
 
-.menuButton.isOpen .bottomLine path {
-  transform: translateY(-8px) rotate(-45deg);
+.menuOpen .bottomLine  {
+  transform: matrix(1, 0, 0, 1, 27, 5) rotate(-45deg);
+  transition: transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1); /* Increased to 0.8s */
+
 }
-
-
 
 .menuOverlay {
   position: fixed;

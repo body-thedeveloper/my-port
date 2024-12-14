@@ -37,19 +37,18 @@ const Navbar = () => {
             <svg viewBox="0 0 70 70">
               <g>
                 <g className={styles.topLine}>
-                  <path d="M -0.088 -0.096 C -0.088 -0.096 29 -0.049 29 -0.049" />
+                  <path d="M -29 -19.25 L 29 -19.25" />
                 </g>
                 <g className={styles.middleLine}>
-                  <path d="M -29 -19.25 C -29 -19.25 29 -19.25 29 -19.25" />
+                  <path d="M -0.088 -0.096 L 29 -0.049" />
                 </g>
                 <g className={styles.bottomLine}>
-                  <path d="M -29 23.984 C -29 23.984 29 23.984 29 23.984" />
+                  <path d="M -29 23.984 L 29 23.984" />
                 </g>
               </g>
             </svg>
           </div>
         </button>
-
         </div>
       </nav>
       
@@ -79,10 +78,10 @@ const Navbar = () => {
             <div className={styles.menuRight}>
               <div className={styles.contactInfo}>
                 <div className={styles.contactTitle}>
-                  Let's find solutions<br />together?
+                  Let&apos;s find solutions<br />together?
                 </div>
                 <p className={styles.contactText}>
-                  Use my contacts below if you need to put a project on the move, let's work on it!
+                  Use my contacts below if you need to put a project on the move, let&apos;s work on it!
                 </p>
                 <div className={styles.contactEmail}>
                   <a href="mailto:joaovdesign@gmail.com">joaovdesign(a)gmail.com</a>
