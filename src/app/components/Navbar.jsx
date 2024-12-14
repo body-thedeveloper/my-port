@@ -1,6 +1,6 @@
 // components/Navbar.jsx
 "use client"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './Navbar.module.css';
 
@@ -10,32 +10,17 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isMenuOpen]);
 
   return (
     <>
-         <nav className={styles.navbarWrapper}>
-        <div className={styles.navbar}>
-          <Link href="/" className={styles.brandWrapper}>
-            <div className={styles.brandLogo}>
-              jv
-            </div>
-            <div className={`${styles.brandLogo} ${styles.brandLogoHover}`}>
-              jv
-            </div>
-            <span className={styles.textSpan}>.</span>
-          </Link>
-          <div className={styles.menuWrapper} onClick={toggleMenu}>
-            <div className={styles.menuIcon}>
-              {/* You'll need to replace this with the actual SVG or image for the menu icon */}
-              <svg width="30" height="30" viewBox="0 0 100 100">
-                <rect width="100" height="10" fill="#ffffff" />
-                <rect y="30" width="100" height="10" fill="#ffffff" />
-                <rect y="60" width="100" height="10" fill="#ffffff" />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </nav>
+    
       <nav className={styles.nav}>
         <div className={styles.navContainer}>
         
@@ -48,7 +33,7 @@ const Navbar = () => {
           </div>
         </Link>
         <button onClick={toggleMenu} className={styles.menuButton}>
-          <div className={styles.menuIcon}>
+          <div className={`${styles.menuIcon} ${isMenuOpen ? styles.menuOpen : ''}`}>
             <svg viewBox="0 0 70 70">
               <g>
                 <g className={styles.topLine}>
@@ -67,7 +52,7 @@ const Navbar = () => {
 
         </div>
       </nav>
-
+      
       {isMenuOpen && (
         <div className={styles.menuOverlay}>
           <div className={styles.menuContent}>
@@ -111,6 +96,7 @@ const Navbar = () => {
           <div className={styles.menuBackground}></div>
         </div>
       )}
+      
     </>
   );
 };
