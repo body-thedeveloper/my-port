@@ -327,13 +327,20 @@
   display: block;
   font-size: 40px;
   font-weight: 900;
-  line-height: 52px;
-  letter-spacing: 8px;
+  line-height: 130%;
   color: #000;
   text-decoration: none;
   position: relative;
-  transition: color 0.3s, letter-spacing 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: color 0.3s cubic-bezier(.215,.61,.355,1);
 }
+
+.menuItemText {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(.215,.61,.355,1);
+  transform: translateX(0);
+  margin-right: 0.2em;
+}
+
 
 .menuRight {
   width: 50%;
@@ -414,15 +421,54 @@
   z-index: 10;
 }
 /* Hover effects */
-.menuItem a:hover {
-  letter-spacing: 10px;
-  color: #E0284C;
+
+.menuItemActive {
+  position: relative;
+  color: #e5e7eb !important;
 }
 
+.menuItemActive::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #e5e7eb;
+  animation: lineGrow 0.8s cubic-bezier(.215,.61,.355,1) forwards;
+  animation-delay: 0.3s;
+}
+@keyframes lineGrow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Split text animation */
+
+
+.menuItem:hover .menuItemText:not(:first-child) {
+  transform: translateX(20px);
+  transition: transform 0.3s cubic-bezier(.215,.61,.355,1);
+}
+
+.menuItem:hover .menuItemText {
+  transform: translateX(0.6em);
+}
+.menuItem:hover .menuItemText:first-child {
+  transform: translateX(0);
+}
+
+.menuItemText:first-child {
+  margin-right: 5px;
+}
 .contactEmail a:hover {
   letter-spacing: 2px;
 }
-
+ 
 .contactButton a:hover {
   background-color: #000;
   color: #fff;

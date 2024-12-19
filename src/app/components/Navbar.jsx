@@ -1,12 +1,40 @@
 "use client"
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import styles from './Navbar.module.css';
+
+const MenuItem = ({ href, text, isActive }) => {
+  // Split text into array of letters
+  const letters = text.split('');
+
+  return (
+    <div className={styles.menuItem}>
+      <Link 
+        href={href} 
+        className={isActive ? styles.menuItemActive : ''}
+      >
+        {letters.map((letter, index) => (
+          <span 
+            key={index} 
+            className={styles.menuItemText}
+            style={{ 
+              transitionDelay: `${index * 0.02}s`
+            }}
+          >
+            {letter}
+          </span>
+        ))}
+      </Link>
+    </div>
+  );
+};
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuFinal, setIsMenuFinal] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const currentPath = usePathname();
 
   const toggleMenu = () => {
     if (!isMenuOpen) {
@@ -20,7 +48,7 @@ export default function Navbar() {
       // Closing sequence
       setIsClosing(true);
       setIsMenuFinal(false);
-      // Keep menu open class until menu is almost closed
+      // Wait for menu to almost finish closing before changing icon
       setTimeout(() => {
         setIsMenuOpen(false);
       }, 400); // Slightly before menu finishes closing
@@ -52,7 +80,7 @@ export default function Navbar() {
           </Link>
           
           <button onClick={toggleMenu} className={styles.menuButton}>
-            <div className={`${styles.menuIcon} ${isMenuOpen ? styles.menuOpen : ''}`}>
+            <div className={`${styles.menuIcon} ${isMenuOpen ? styles.menuOpen : ''} ${isClosing ? styles.menuClosing : ''}`}>
               <svg viewBox="0 0 70 70">
                 <g>
                   <g className={styles.topLine}>
@@ -82,21 +110,31 @@ export default function Navbar() {
         <div className={styles.menuContent}>
           <div className={styles.menuLeft}>
             <div className={styles.menuLinks}>
-              <div className={styles.menuItem}>
-                <Link href="/">Home</Link>
-              </div>
-              <div className={styles.menuItem}>
-                <Link href="/work">Work</Link>
-              </div>
-              <div className={styles.menuItem}>
-                <Link href="/about">About</Link>
-              </div>
-              <div className={styles.menuItem}>
-                <Link href="/blog">Blog</Link>
-              </div>
-              <div className={styles.menuItem}>
-                <Link href="/contact">Contact</Link>
-              </div>
+              <MenuItem 
+                href="/" 
+                text="Home" 
+                isActive={currentPath === '/'} 
+              />
+              <MenuItem 
+                href="/work" 
+                text="Work" 
+                isActive={currentPath === '/work'} 
+              />
+              <MenuItem 
+                href="/about" 
+                text="About" 
+                isActive={currentPath === '/about'} 
+              />
+              <MenuItem 
+                href="/blog" 
+                text="Blog" 
+                isActive={currentPath === '/blog'} 
+              />
+              <MenuItem 
+                href="/contact" 
+                text="Contact" 
+                isActive={currentPath === '/contact'} 
+              />
             </div>
           </div>
           
@@ -119,6 +157,8 @@ export default function Navbar() {
         </div>
         <div className={styles.menuBackground}></div>
       </div>
+      
+      <div className={`${styles.menuOverlayBackground} ${isMenuOpen ? styles.menuOverlayBackgroundOpen : ''}`}></div>
     </>
   );
 }
