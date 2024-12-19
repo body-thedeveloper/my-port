@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 import styles from './Navbar.module.css';
 
 const MenuItem = ({ href, text, isActive }) => {
-  // Split text into array of letters
   const letters = text.split('');
 
   return (
@@ -17,7 +16,7 @@ const MenuItem = ({ href, text, isActive }) => {
         {letters.map((letter, index) => (
           <span 
             key={index} 
-            className={styles.menuItemText}
+            className={`${styles.menuItemText} ${!isActive ? styles.menuItemTextAnimated : ''}`}
             style={{ 
               transitionDelay: `${index * 0.02}s`
             }}
@@ -29,6 +28,7 @@ const MenuItem = ({ href, text, isActive }) => {
     </div>
   );
 };
+
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -110,6 +110,7 @@ export default function Navbar() {
         <div className={styles.menuContent}>
           <div className={styles.menuLeft}>
             <div className={styles.menuLinks}>
+
               <MenuItem 
                 href="/" 
                 text="Home" 
