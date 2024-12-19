@@ -164,7 +164,7 @@
 
 .menuButton {
   width: 30px;
-  height: 40px;
+  height: 30px;
   background: none;
   border: none;
   cursor: pointer;
@@ -177,7 +177,7 @@
 
 .menuIcon {
   width: 30px;
-  height: 40px;
+  height: 30px;
   position: relative;
   cursor: pointer;
 }
@@ -192,34 +192,35 @@
   fill: none;
   stroke: #fff;
   stroke-width: 8px;
-  transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-/* Lines positioning */
 .topLine {
   transform: matrix(1, 0, 0, 1, 35, 35);
   transform-origin: center;
+  transition: transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.middleLine {
+  transform: matrix(1, 0, 0, 1, 35, 35);
+  transform-origin: center;
+  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.bottomLine {
+  transform: matrix(1, 0, 0, 1, 35, 35);
+  transform-origin: center;
+  transition: transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .topLine path {
   transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-.middleLine {
-  transform: matrix(1, 0, 0, 1, 35, 35);
-  transform-origin: center;
-}
-
 .middleLine path {
   width: 50%;
   transform-origin: center;
   transition: opacity 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-
-
-.bottomLine {
-  transform: matrix(1, 0, 0, 1, 35, 35);
-  transform-origin: center;
 }
 
 .bottomLine path {
@@ -238,20 +239,18 @@
 /* When menu is open */
 .menuOpen .topLine  {
   transform: matrix(1, 0, 0, 1, -21, 84) rotate(45deg);
-  transition: transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1); /* Increased to 0.8s */
-
 
 }
 
 .menuOpen .middleLine path {
   opacity: 0;
-  transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1); /* Increased to 0.8s */
+ 
 
 }
 
 .menuOpen .bottomLine  {
   transform: matrix(1, 0, 0, 1, 27, 5) rotate(-45deg);
-  transition: transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1); /* Increased to 0.8s */
+
 
 }
 
@@ -261,14 +260,42 @@
   left: 0;
   right: 0;
   bottom: 0;
+  background-color: #cc3;
   z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(0px, -200%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+  transform-style: preserve-3d;
+  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
   display: flex;
   justify-content: center;
   align-items: center;
-  transform-origin: 50% 0;
-  transform-style: preserve-3d;
+}
+.menuOverlayOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: translate3d(0px, -97%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+}
+.menuOverlayFinal {
+  transform: translate3d(0px, 0%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+}
+.menuOverlayBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background-color: #000;
+  z-index: 90;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
+.menuOverlayBackgroundOpen {
+  opacity: 1;
+  visibility: visible;
+}
 .menuContent {
   display: flex;
   align-items: flex-start;
@@ -386,19 +413,6 @@
   background-color: #cc3;
   z-index: 10;
 }
-
-.menuOverlayBackground {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 521px;
-  background-color: #000;
-  z-index: 90;
-  opacity: 0;
-  display: none;
-}
-
 /* Hover effects */
 .menuItem a:hover {
   letter-spacing: 10px;
