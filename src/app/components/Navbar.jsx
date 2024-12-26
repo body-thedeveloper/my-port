@@ -17,9 +17,9 @@ const MenuItem = ({ href, text, isActive }) => {
           <span 
             key={index} 
             className={`${styles.menuItemText} ${!isActive ? styles.menuItemTextAnimated : ''}`}
-            style={{ 
-              transitionDelay: `${index * 0.02}s`
-            }}
+            // style={{ 
+            //   transitionDelay: `${index * 0.02}s`
+            // }}
           >
             {letter}
           </span>

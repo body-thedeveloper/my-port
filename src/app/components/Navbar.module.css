@@ -1,4 +1,4 @@
-/* Navbar base styles */
+/* Navbar.module.css */
 .nav {
   position: fixed;
   top: 0;
@@ -10,7 +10,6 @@
   justify-content: center;
   height: 60px;
 }
-
 .navContainer {
   display: flex;
   justify-content: space-between;
@@ -23,7 +22,6 @@
   z-index: 200;
 }
 
-/* Logo styles */
 .logoWrapper {
   display: flex;
   align-items: center;
@@ -32,6 +30,7 @@
   max-width: 100%;
   text-decoration: none;
   color: #E0284C;
+  
 }
 
 .logo {
@@ -61,6 +60,7 @@
   display: inline-block;
   margin-left: 6px;
   transition: margin-left 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  
 }
 
 .letterDot {
@@ -71,10 +71,100 @@
   transition: margin-left 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0.05s;
 }
 
-/* Menu button styles */
+.logo:hover .letterV {
+  margin-left: 22px;
+}
+
+.logo:hover .letterDot {
+  margin-left: 22px;
+}
+.navbarWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 20px;
+  mix-blend-mode: exclusion;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.brandWrapper {
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+}
+
+.brandLogo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  transition: transform 0.3s ease;
+}
+
+.brandLogoHover {
+  transform: translateY(100%);
+  color: #e0284c;
+}
+
+.brandWrapper:hover .brandLogo {
+  transform: translateY(-100%);
+}
+
+.brandWrapper:hover .brandLogoHover {
+  transform: translateY(0);
+}
+
+.textSpan {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: #e0284c;
+}
+
+/* ... rest of the CSS remains the same ... */
+/* ... previous navbar styles remain the same ... */
+
+.menuWrapper {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  z-index: 2000;
+}
+
+.hamburger {
+  width: 30px;
+  height: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
 .menuButton {
   width: 30px;
-  height: 40px;
+  height: 30px;
   background: none;
   border: none;
   cursor: pointer;
@@ -87,7 +177,7 @@
 
 .menuIcon {
   width: 30px;
-  height: 40px;
+  height: 30px;
   position: relative;
   cursor: pointer;
 }
@@ -105,55 +195,65 @@
   transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-/* Menu icon lines */
 .topLine {
   transform: matrix(1, 0, 0, 1, 35, 35);
   transform-origin: center;
+  transition: transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .middleLine {
   transform: matrix(1, 0, 0, 1, 35, 35);
   transform-origin: center;
+  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .bottomLine {
   transform: matrix(1, 0, 0, 1, 35, 35);
   transform-origin: center;
+  transition: transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-/* Menu open state */
-.menuOpen .topLine {
+.topLine path {
+  transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.middleLine path {
+  width: 50%;
+  transform-origin: center;
+  transition: opacity 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.bottomLine path {
+  transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/* Hover animations */
+.menuButton:hover .menuIcon:not(.menuOpen) .topLine path {
+  transform: translateY(-12px);
+}
+
+.menuButton:hover .menuIcon:not(.menuOpen) .bottomLine path {
+  transform: translateY(12px);
+}
+
+/* When menu is open */
+.menuOpen .topLine  {
   transform: matrix(1, 0, 0, 1, -21, 84) rotate(45deg);
-  transition: transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+
 }
 
 .menuOpen .middleLine path {
   opacity: 0;
-  transition: opacity 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+ 
+
 }
 
-.menuOpen .bottomLine {
+.menuOpen .bottomLine  {
   transform: matrix(1, 0, 0, 1, 27, 5) rotate(-45deg);
-  transition: transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+
 }
 
-/* Menu closing state */
-.menuClosing .topLine {
-  transform: matrix(1, 0, 0, 1, 35, 35);
-  transition: transform 0s;
-}
-
-.menuClosing .middleLine path {
-  opacity: 1;
-  transition: opacity 0s;
-}
-
-.menuClosing .bottomLine {
-  transform: matrix(1, 0, 0, 1, 35, 35);
-  transition: transform 0s;
-}
-
-/* Menu overlay */
 .menuOverlay {
   position: fixed;
   top: 0;
@@ -164,53 +264,59 @@
   z-index: 100;
   opacity: 0;
   visibility: hidden;
-  transform: translate3d(0px, -100%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+  transform: translate3d(0px, -200%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
   transform-style: preserve-3d;
   transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
 .menuOverlayOpen {
   opacity: 1;
   visibility: visible;
-  transform: translate3d(0px, 97%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+  transform: translate3d(0px, -97%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
 }
-
 .menuOverlayFinal {
   transform: translate3d(0px, 0%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
 }
-
-.menuOverlayClosing {
-  transform: translate3d(0px, -100%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+.menuOverlayBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background-color: #000;
+  z-index: 90;
   opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-/* Menu content layout */
+.menuOverlayBackgroundOpen {
+  opacity: 1;
+  visibility: visible;
+}
 .menuContent {
   display: flex;
-  justify-content: space-between;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 100px 20px;
-  height: 100%;
+  align-items: flex-start;
+  width: 70%;
+  max-width: 960px;
+  position: relative;
 }
 
 .menuLeft {
-  flex: 1;
-  padding-right: 40px;
+  width: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  position: relative;
+  z-index: 100;
 }
 
-.menuRight {
-  flex: 1;
-  padding-left: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.menuLinks {
+  margin-bottom: 30px;
 }
 
-/* Menu items */
 .menuItem {
   margin-bottom: 30px;
   position: relative;
@@ -219,165 +325,226 @@
 
 .menuItem a {
   display: block;
-  font-size: 40px;
-  font-weight: 900;
+  font-size: 45px;
+  font-weight: 700;
   line-height: 130%;
   color: #000;
   text-decoration: none;
   position: relative;
-  letter-spacing: .2em;
-  transition: color 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: color 0.3s cubic-bezier(.215,.61,.355,1);
+  font-family: Bwnistagrot bd, sans-serif;
 }
 
-/* Base styles for all menu item text */
 .menuItemText {
   display: inline-block;
-  margin-right: 0.2em;
-  
-}
-
-/* Animation styles only for non-active items */
-.menuItemTextAnimated {
   transition: transform 0.3s cubic-bezier(.215,.61,.355,1);
-  
+  transform: translateX(0);
+  margin-right: 0.2em;
 }
 
-.menuItem:hover a {
-  color: #e5e7eb;
 
-}
-
-.menuItem:hover .menuItemTextAnimated {
-  letter-spacing: .6em;
-}
-
-/* .menuItem:hover .menuItemTextAnimated:first-child {
-  letter-spacing: 0em;
-} */
-
-/* Active menu item */
-.menuItemActive {
-  color: #e5e7eb !important;
+.menuRight {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   position: relative;
+  z-index: 100;
 }
 
-@keyframes lineGrow {
-  from {
-    width: 0;
-  }
-  to {
-    width: 40%;
-  }
+.contactInfo {
+  margin-bottom: 60px;
+  overflow: hidden;
+}
+
+.contactTitle {
+  font-size: 29px;
+  font-weight: 900;
+  line-height: 37.7px;
+  letter-spacing: 0.29px;
+  text-align: left;
+}
+
+.contactText {
+  font-size: 18px;
+  line-height: 32.4px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+
+}
+
+.contactEmail {
+  margin-bottom: 60px;
+  overflow: hidden;
+}
+
+.contactEmail a {
+  font-size: 18px;
+  line-height: 32.4px;
+  color: #000;
+  text-decoration: none;
+  text-align: left;
+  font-family: Montreuxc bd, sans-serif;
+  font-weight: 400;
+  transition: letter-spacing .3s cubic-bezier(.215,.61,.355,1);
+}
+
+.contactButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+  overflow: hidden;
+}
+
+.contactButton a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 3px 20px 0;
+  border: 2px solid #000;
+  color: #000;
+  text-decoration: none;
+  font-weight: 700;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.menuBackground {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  right: 0;
+  height: 110%;
+  background-color: #cc3;
+  z-index: 10;
+}
+/* Hover effects */
+
+.menuItemActive {
+  position: relative;
+  color: #e5e7eb !important;
 }
 
 .menuItemActive::after {
   content: '';
   position: absolute;
-  bottom: 20px;
+  bottom: -5px;
   left: 0;
-  width: 100%;
-  height: 3px;
-  background-color: #0b0b0b;
+  width: 0;
+  height: 2px;
+  background-color: #e5e7eb;
   animation: lineGrow 0.8s cubic-bezier(.215,.61,.355,1) forwards;
   animation-delay: 0.3s;
 }
-
-/* Contact section */
-.contactInfo {
-  color: #000;
+@keyframes lineGrow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
-.contactTitle {
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  line-height: 1.2;
+/* Split text animation */
+
+
+.menuItem:hover .menuItemText :not(:first-child){
+  transform: translateX(0.6em);
+  transition: transform 0.3s cubic-bezier(.215,.61,.355,1);
 }
 
-.contactText {
-  font-size: 16px;
-  margin-bottom: 30px;
-  line-height: 1.5;
+.menuItem:hover .menuItemText {
+  transform: translateX(0.6em);
+  transition: transform 0.3s cubic-bezier(.215,.61,.355,1);
+}
+.menuItem:hover .menuItemText:first-child {
+  transform: translateX(0);
 }
 
-.contactEmail {
-  margin-bottom: 30px;
+.menuItemText:first-child {
+  margin-right: 5px;
+  
 }
-
-.contactEmail a {
-  color: #000;
-  text-decoration: none;
-  font-size: 18px;
-  transition: color 0.3s ease;
-}
-
 .contactEmail a:hover {
-  color: #e5e7eb;
+  letter-spacing: 2px;
+  font-family: Montreuxc bd, sans-serif;
+  font-weight: 700;
 }
-
-.contactButton a {
-  display: inline-block;
-  padding: 12px 24px;
+ 
+.contactButton a:hover {
   background-color: #000;
   color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
 }
 
-.contactButton a:hover {
-  background-color: #333;
+/* Animation classes */
+.menuOverlay.entering {
+  animation: menuEnter 0.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
 }
 
-/* Background overlay */
-.menuOverlayBackground {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 90;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+.menuOverlay.exiting {
+  animation: menuExit 0.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
 }
 
-.menuOverlayBackgroundOpen {
-  opacity: 1;
-  visibility: visible;
+@keyframes menuEnter {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
-/* Responsive styles */
-@media screen and (max-width: 768px) {
+@keyframes menuExit {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
   .menuContent {
+    width: 90%;
     flex-direction: column;
-    padding: 60px 20px;
   }
 
-  .menuLeft, .menuRight {
-    padding: 0;
+  .menuLeft,
+  .menuRight {
+    width: 100%;
   }
 
   .menuItem a {
     font-size: 32px;
+    line-height: 42px;
   }
 
   .contactTitle {
     font-size: 24px;
+    line-height: 31px;
   }
 }
 
-@media screen and (max-width: 480px) {
+@media (max-width: 480px) {
   .menuItem a {
     font-size: 24px;
+    line-height: 32px;
+    letter-spacing: 4px;
   }
 
   .contactTitle {
     font-size: 20px;
+    line-height: 26px;
   }
 
-  .contactText {
-    font-size: 14px;
+  .contactText,
+  .contactEmail a {
+    font-size: 16px;
+    line-height: 24px;
   }
 }
