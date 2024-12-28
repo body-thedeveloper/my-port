@@ -189,17 +189,20 @@
   border-left: 2px solid #fff;
   border-bottom: 2px solid #fff;
   text-align:center;
-
 }
 
 
 .leftArrow .arrowIcon {
   transform: rotate(45deg);
+  position: relative;
+    left: 4px;
 
 }
 
 .rightArrow .arrowIcon {
   transform: rotate(225deg);
+  position: relative;
+  right: 4px;
 }
 
 /* Slide Navigation Dots */
